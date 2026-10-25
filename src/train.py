@@ -10,7 +10,8 @@ from sklearn.preprocessing import StandardScaler
 
 from data_preparation import load_data, prepare_features
 
-DATA_PATH = "data/raw/churn.csv"
+DATA_PATH = "data/processed/churn_v1.csv"
+DATA_VERSION = "v1"
 MODEL_PATH = "models/baseline_model.joblib"
 REPORT_PATH = "reports/baseline_metrics.json"
 
@@ -40,6 +41,7 @@ def main():
         "recall": recall_score(y_test, predictions, zero_division=0),
         "f1": f1_score(y_test, predictions, zero_division=0),
         "roc_auc": roc_auc_score(y_test, probabilities),
+        "data_version": DATA_VERSION,
     }
 
     Path("models").mkdir(exist_ok=True)
